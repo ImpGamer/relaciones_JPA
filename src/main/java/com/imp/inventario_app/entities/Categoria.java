@@ -18,10 +18,6 @@ public class Categoria {
     private Long id;
     @Column(nullable = false)
     private String nombre;
-    @ManyToOne
-    @JoinColumn(name = "marca_id")
-    private Marca marca;
-
     public Categoria(String nombre) {
         this.nombre = nombre;
     }
