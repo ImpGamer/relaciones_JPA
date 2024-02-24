@@ -17,7 +17,7 @@
             <input type="text" th:field="*{nombre}" class="form-control">
         </label>
         <div class="col-md-4">
-            <label class="form-label">Categoria Marca
+            <label class="form-label">Seleccione 1 o mas categorias
                 <select class="form-select" th:field="*{categorias}" required multiple>
                     <!-- Bloque th:block fuera del select -->
                     <th:block th:each="categoria:${listaCategorias}">

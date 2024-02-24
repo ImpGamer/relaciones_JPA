@@ -25,8 +25,8 @@
             <td th:text="${marca.getId()}"></td>
             <td th:text="${marca.getNombre()}"></td>
             <td th:text="${marca.getCategorias()}"></td>
-            <td><a class="btn btn-warning">Editar</a></td>
-            <td><a class="btn btn-danger">Eliminar</a></td>
+            <td><a th:href="@{/marcas/editar/{id}(id=${marca.getId()})}" class="btn btn-warning">Editar</a></td>
+            <td><a th:href="@{/marcas/{id}(id=${marca.getId()})}" class="btn btn-danger">Eliminar</a></td>
         </tr>
         </tbody>
         <tfoot>

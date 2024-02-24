@@ -6,10 +6,7 @@ import com.imp.inventario_app.services.MarcaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/marcas")
@@ -41,5 +38,28 @@ public class MarcaController {
             return "formularioMarca";
         }
         return "redirect:/marcas";
+    }
+    @GetMapping("/editar/{id}")
+    String formularioEditarMarca(@PathVariable Integer id,Model model) {
+        model.addAttribute("marca",marcaService.buscarMarca_ID(id));
+        model.addAttribute("direccion","/marcas/editar/"+id);
+        model.addAttribute("listaCategorias",categoriaService.mostrarCategorias());
+
+        return "formularioMarca";
+    }
+    @PostMapping("/editar/{id}")
+    String editarMarca(@PathVariable Integer id,Marca marca,Model model) {
+        try {
+            marcaService.editarMarca(id,marca);
+        }catch (Exception e) {
+            model.addAttribute("msgError",e.getMessage());
+            return "formularioMarca";
+        }
+        return "redirect:/marcas";
+    }
+    @GetMapping("/{id}")
+    String eliminarMarca(@PathVariable Integer id) {
+        marcaService.eliminarMarca(id);
+        return "redirect:/inicio";
     }
 }
